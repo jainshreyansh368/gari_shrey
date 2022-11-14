@@ -15,6 +15,6 @@ $ cargo run
 ...
 
 start_date:  2022-11-13
-end_date: 2022-11-15
+end_date:    2022-11-15
 
 ```
