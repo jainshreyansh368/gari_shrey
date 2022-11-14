@@ -23,7 +23,6 @@ async fn main() -> () {
     println!("start date {:?}", (start_date.trim()).to_string());
     println!("end date{:?}", (end_date.trim()).to_string());
 
-    // let (startD, endD) = FilterData{start_date, end_date}.parse_data_to_date()?;
     let (startD, endD) = FilterData::parse_data_to_date((start_date.trim()).to_string(), (end_date.trim()).to_string());
 
 
@@ -42,14 +41,10 @@ async fn main() -> () {
 
     for result_vec_data in result_data {
 
-
         let meta_data = match &result_vec_data.transaction.meta {
             Some(val) => val,
             _ => todo!(),
         };
-
-        // let pre_token_bal = meta_data.pre_token_balances.clone();
-        // let post_token_bal = meta_data.post_token_balances.clone();
 
         let pre_token_bal = match meta_data.pre_token_balances.clone() {
             OptionSerializer::Some(val) => val,
@@ -60,12 +55,6 @@ async fn main() -> () {
             OptionSerializer::Some(val) => val,
             _ => todo!(),
         };
-
-        // let ui_amount = match post_token_bal[0].ui_token_amount.ui_amount
-        // {
-        //     Some(val) => val,
-        //     _ => unimplemented!()
-        // };
 
         let ui_amount = post_token_bal[0].clone().ui_token_amount.amount; 
 
@@ -79,16 +68,7 @@ async fn main() -> () {
             println!("user balance {:?}", ui_amount);
         }
 
-        // println!("pre token bal: {:?} \n", pre_token_bal);
-        // println!("post token bal: {:?} \n", post_token_bal);
-
     }
-
-    // println!("{:?}", result_data);
-    // dbg!(result_data.len());
 
     ()
 }
-
-//   dbg!(&result_data);
-//   println!("{:?}",result_data.len());
